@@ -38,8 +38,13 @@ public class FXMLController {
     			int numeroCrediti = Integer.parseInt(txtInput.getText());
     			Set<Esame> voti = model.calcolaSottoinsiemeEsami(numeroCrediti);
     			
+    			for (Esame e : voti)
+    				txtResult.appendText(e.toString() + "\n");
+    			
     		} catch (NumberFormatException e) {
     			txtResult.setText("Inserire un numero di crediti > 0");
+    		} catch (NullPointerException e) {
+    			txtResult.setText("Non è stato trovato alcun esame valido per la ricerca");
     		}
     }
 
@@ -48,6 +53,7 @@ public class FXMLController {
     		// reset the UI
     		txtInput.clear();
     		txtResult.clear();
+    		
     }
 
     @FXML
